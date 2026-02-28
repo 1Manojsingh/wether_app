@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wether_app/core/theme/text_theme.dart';
 
 import '../models/weather_models.dart';
 
@@ -43,8 +44,8 @@ class QuoteCard extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: Text(
               '- ${quote.author}',
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.textTheme.bodySmall?.color?.withOpacity(0.8),
+              style: appTextTheme.bodySmall?.copyWith(
+                color: appTextTheme.bodySmall?.color?.withOpacity(0.8),
               ),
             ),
           ),

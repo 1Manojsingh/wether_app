@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-
+import 'package:wether_app/core/theme/text_theme.dart';
+import 'package:wether_app/core/utilities/design_utility.dart';
+import '../../../core/providers/theme_brightness_provider.dart';
 import '../models/weather_models.dart';
 
-class ForecastItem extends StatelessWidget {
+class ForecastItem extends ConsumerWidget {
   const ForecastItem({
     super.key,
     required this.forecast,
@@ -16,7 +19,9 @@ class ForecastItem extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
+    final brightness = ref.watch(themeBrightnessProvider);
+    final isDarkMode = brightness == Brightness.dark;
     final theme = Theme.of(context);
     final label = DateFormat('EEE').format(forecast.date);
 
@@ -45,19 +50,17 @@ class ForecastItem extends StatelessWidget {
             ),
           ],
         ),
-        padding: const EdgeInsets.all(12),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               label,
-              style: theme.textTheme.bodyMedium?.copyWith(
+              style: appTextTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w600,
                 color: Colors.white,
               ),
             ),
-            const SizedBox(height: 8),
-            // WeatherAPI condition icon with scale animation
+            verticalSpaceSmall,
             TweenAnimationBuilder<double>(
               tween: Tween(begin: 0.0, end: 1.0),
               duration: const Duration(milliseconds: 500),
@@ -81,11 +84,11 @@ class ForecastItem extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 8),
+            verticalSpaceSmall,
             Text(
               '${forecast.minTempC.toStringAsFixed(0)}° / ${forecast.maxTempC.toStringAsFixed(0)}°',
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: Colors.white,
+              style: appTextTheme.bodyMedium?.copyWith(
+                color:  isDarkMode ? Colors.white : Colors.black,
               ),
             ),
           ],

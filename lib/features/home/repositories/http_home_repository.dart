@@ -53,27 +53,22 @@ class HttpHomeRepository implements HomeRepository {
       final json = jsonDecode(response.body) as Map<String, dynamic>;
       return Quote.fromJson(json);
     } on HandshakeException {
-      // SSL / certificate issues with the remote API.
-      // Fall back to a static quote so the UI still works in production.
       return const Quote(
         text:
             'Keep your face always toward the sunshine—and shadows will fall behind you.',
         author: 'Walt Whitman',
       );
     } on SocketException {
-      // No internet or other low‑level network issue.
       return const Quote(
         text: 'No internet connection. Every storm runs out of rain.',
         author: 'Maya Angelou',
       );
     } on TimeoutException {
-      // Remote API is too slow; show a friendly fallback.
       return const Quote(
         text: 'Good things take time. Be patient with yourself today.',
         author: 'Unknown',
       );
     } catch (_) {
-      // Any other unexpected error – return a safe generic quote instead of failing.
       return const Quote(
         text: 'Unable to load today\'s thought. Stay positive and keep going!',
         author: 'Unknown',

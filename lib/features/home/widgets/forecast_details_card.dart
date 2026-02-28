@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import 'package:wether_app/core/utilities/design_utility.dart';
 import '../models/weather_models.dart';
 import 'hourly_forecast_item.dart';
 
@@ -44,25 +44,25 @@ class ForecastDetailsCard extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 8),
+          verticalSpaceSmall,
           Text(
             forecast.condition.text,
             style: theme.textTheme.bodyMedium,
           ),
-          const SizedBox(height: 8),
+          verticalSpaceSmall,
           Text(
             'Min ${forecast.minTempC.toStringAsFixed(0)}° • Max ${forecast.maxTempC.toStringAsFixed(0)}°',
             style: theme.textTheme.bodyLarge,
           ),
           if (forecast.hourly.isNotEmpty) ...[
-            const SizedBox(height: 16),
+            verticalSpaceRegular,
             Text(
               '24-Hour Forecast',
               style: theme.textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
             ),
-            const SizedBox(height: 8),
+            verticalSpaceSmall,
             SizedBox(
               height: 90,
               child: ListView.separated(

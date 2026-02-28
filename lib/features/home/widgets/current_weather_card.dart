@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:wether_app/core/utilities/design_utility.dart';
 
 import '../models/weather_models.dart';
 import 'weather_metric_chip.dart';
@@ -99,14 +100,14 @@ class _CurrentWeatherCardState extends State<CurrentWeatherCard>
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    verticalSpaceTiny,
                     Text(
                       formattedDate,
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: Colors.white70,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    verticalSpaceSmall,
                     Text(
                       widget.current.condition.text,
                       style: theme.textTheme.bodyMedium?.copyWith(
@@ -116,7 +117,7 @@ class _CurrentWeatherCardState extends State<CurrentWeatherCard>
                   ],
                 ),
               ),
-              const SizedBox(width: 12),
+              verticalSpaceRegular,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -127,12 +128,12 @@ class _CurrentWeatherCardState extends State<CurrentWeatherCard>
                         '${_tempAnimation.value.toStringAsFixed(0)}°',
                         style: theme.textTheme.displaySmall?.copyWith(
                           color: Colors.white,
-                          fontWeight: FontWeight.w700,
+                          fontSize: 90
                         ),
                       );
                     },
                   ),
-                  const SizedBox(height: 4),
+                  verticalSpaceTiny,
                   Text(
                     'Feels like ${widget.current.feelsLikeC.toStringAsFixed(0)}°',
                     style: theme.textTheme.bodySmall?.copyWith(
@@ -143,7 +144,7 @@ class _CurrentWeatherCardState extends State<CurrentWeatherCard>
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          verticalSpaceRegular,
           Row(
             children: [
               Expanded(
@@ -153,7 +154,7 @@ class _CurrentWeatherCardState extends State<CurrentWeatherCard>
                   value: '${widget.current.humidity}%',
                 ),
               ),
-              const SizedBox(width: 8),
+              horizontalSpaceRegular,
               Expanded(
                 child: WeatherMetricChip(
                   icon: Icons.air_rounded,

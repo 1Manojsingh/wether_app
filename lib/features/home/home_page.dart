@@ -129,19 +129,6 @@ class _HomePageState extends ConsumerState<HomePage>
                       );
                     },
                     child: weatherAsync.when(
-                      loading: () => const HomePageShimmer(key: ValueKey('home-loading')),
-                      error: (err, _) {
-                        final raw = err.toString();
-                        final friendly = raw.startsWith('Exception: ')
-                            ? raw.substring('Exception: '.length)
-                            : raw;
-
-                        return ErrorSection(
-                          key: ValueKey('error-$friendly'),
-                          message: friendly,
-                          onRetry: () => ref.refresh(weatherProvider(_city)),
-                        );
-                      },
                       data: (bundle) {
                         final forecasts = bundle.forecast;
                         if (forecasts.isEmpty) {
@@ -234,6 +221,19 @@ class _HomePageState extends ConsumerState<HomePage>
                               ),
                             ),
                           ],
+                        );
+                      },
+                      loading: () => const HomePageShimmer(key: ValueKey('home-loading')),
+                      error: (err, _) {
+                        final raw = err.toString();
+                        final friendly = raw.startsWith('Exception: ')
+                            ? raw.substring('Exception: '.length)
+                            : raw;
+
+                        return ErrorSection(
+                          key: ValueKey('error-$friendly'),
+                          message: friendly,
+                          onRetry: () => ref.refresh(weatherProvider(_city)),
                         );
                       },
                     ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wether_app/core/theme/text_theme.dart';
+import 'package:wether_app/core/utilities/design_utility.dart';
 
 class WeatherMetricChip extends StatelessWidget {
   const WeatherMetricChip({
@@ -31,19 +33,19 @@ class WeatherMetricChip extends StatelessWidget {
             size: 20,
             color: Colors.white,
           ),
-          const SizedBox(width: 8),
+          verticalSpaceSmall,
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 label,
-                style: theme.textTheme.bodySmall?.copyWith(
+                style: appTextTheme.bodySmall?.copyWith(
                   color: Colors.white70,
                 ),
               ),
               Text(
                 value,
-                style: theme.textTheme.bodyMedium?.copyWith(
+                style: appTextTheme.bodyMedium?.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
                 ),
