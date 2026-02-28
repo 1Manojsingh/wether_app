@@ -47,14 +47,6 @@ flutter:
     - assets/audio/
     - assets/gifs/
     - assets/videos/
-    - assets/videos/big_win/
-    - assets/videos/mega/
-    - assets/videos/jackpot/
-    - assets/videos/timer/
-    - assets/videos/viral/
-    - assets/videos/on_fire/
-    - assets/videos/rnd_videos/
-    - assets/videos/likes_comments_followers_vap/
     - assets/fonts/
   fonts:
     - family: Digitalt
